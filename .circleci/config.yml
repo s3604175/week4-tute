@@ -30,7 +30,7 @@ jobs:
     steps:
       - checkout
       - install_deps
-      - runs:
+      - run:
           name: run tests
           command: |
             mkdir test-output
