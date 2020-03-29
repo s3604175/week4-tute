@@ -32,7 +32,7 @@ jobs:
       - install_deps
       - runs:
           name: run tests
-          command:
+          command: |
             mkdir test-output
             npm run integration-tests
   sast:
@@ -62,7 +62,7 @@ jobs:
           path: ./
 
 workflows:
-  build-and-packge:
+  build-and-package:
     jobs:
       - ci-build
       - integration-tests:
