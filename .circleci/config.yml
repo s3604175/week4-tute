@@ -49,7 +49,14 @@ jobs:
       - run:
           name: run nodejsscan
           command: |
-            nodejsscan -d ./
+            nodejsscan -d ./ -o sast-output.json
+      - store_artifacts:
+          path: sast-output.json
+      - run:
+          name: parse sast report
+          command: |
+            # exit with a non-zero exit code if there are any security issues
+            exit $(cat sast-output.json | jq .total_count.sec)
   pack:
     docker:
       - image: circleci/node:lts
